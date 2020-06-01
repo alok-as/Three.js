@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Basic Three.js Implementation</title>
+		<link rel="stylesheet" href="../styles/style.css" />
+	</head>
+	<body>
+		<script src="../js/three.min.js"></script>
+		<script>
+			let scene, camera, renderer, sphere;
+			let ADD = 0.1;
+
+			const createSphere = () => {
+				let geometry = new THREE.SphereGeometry(0.5, 0.5, 0.5);
+				let material = new THREE.MeshBasicMaterial({ color: 0x00a1cb });
+				cube = new THREE.Mesh(geometry, material);
+				scene.add(sphere);
+			};
+
+			const init = () => {
+				//Creating a scene
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color(0xababab);
+
+				//Setting up the Camera
+				camera = new THREE.PerspectiveCamera(
+					30,
+					window.innerWidth / window.innerHeight,
+					0.1,
+					1000
+				);
+
+				camera.position.z = 6;
+
+				//Setting up the cordinate reference
+				let axes = new THREE.AxesHelper(5);
+				scene.add(axes);
+
+				//Creating a Cube
+				createCube();
+
+				//Creating the Renderer
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize(window.innerWidth, window.innerHeight);
+				document.body.appendChild(renderer.domElement);
+			};
+
+			const animate = () => {
+				// cube.rotation.x -= ADD;
+				// cube.rotation.y += ADD;
+				// cube.rotation.z -= ADD;
+				cube.position.x += ADD;
+				if (cube.position.x >= 3 || cube.position.x <= -3) ADD *= -1;
+				renderer.render(scene, camera);
+				requestAnimationFrame(animate);
+			};
+
+			init();
+			animate();
+		</script>
+	</body>
+</html>
