@@ -3,18 +3,20 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Basic Three.js Implementation</title>
+		<title>Implementing Cube</title>
 		<link rel="stylesheet" href="../styles/style.css" />
 	</head>
 	<body>
 		<script src="../js/three.min.js"></script>
 		<script>
 			let scene, camera, renderer, cube;
-			let ADD = 0.1;
+			let ADD = 0.01;
 
 			const createCube = () => {
 				let geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-				let material = new THREE.MeshBasicMaterial({ color: 0x00a1cb });
+				let material = new THREE.MeshBasicMaterial({
+					color: 0x00a1cb,
+				});
 				cube = new THREE.Mesh(geometry, material);
 				scene.add(cube);
 			};
