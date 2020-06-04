@@ -1,0 +1,126 @@
+/* IMPORTING GOOGLE FONT ROBOTO */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: "Roboto", sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	background-color: #5cdb95;
+	box-sizing: border-box;
+}
+
+.header {
+	height: 100vh;
+	position: relative;
+}
+
+.navigation {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 2rem;
+}
+
+.logo {
+	margin-right: auto;
+	font-size: 2rem;
+	font-weight: 700;
+	color: #05386b;
+}
+
+.logo span {
+	display: block;
+	letter-spacing: 2px;
+}
+
+.subtitle {
+	color: white;
+	text-transform: uppercase;
+}
+
+.navigation__links {
+	list-style: none;
+}
+
+.navigation__links li {
+	display: inline-block;
+	margin-right: 2.5rem;
+}
+
+.navigation__links li a {
+	text-decoration: none;
+	color: #05386b;
+	font-size: 1.6rem;
+	font-weight: 500;
+}
+
+.heading-primary {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 5rem;
+	color: white;
+	text-transform: uppercase;
+	font-weight: 700;
+	text-align: center;
+}
+
+.heading-primary span {
+	color: #05386b;
+	font-size: 6rem;
+	letter-spacing: 4px;
+}
+
+.heading-secondary {
+	color: white;
+	font-size: 3rem;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+section {
+	height: 100vh;
+	padding: 5rem;
+}
+
+.myStage {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background-color: orangered;
+	transform: translate(-50%, -50%);
+	width: 60%;
+	height: 60%;
+}
+
+canvas {
+	display: block;
+}
+
+#Controls {
+	position: relative;
+}
+
+/* Orbital Controls */
+.orbital-controls {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 60%;
+	height: 50%;
+}

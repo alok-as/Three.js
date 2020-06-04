@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Creating a Custom geometry</title>
+		<link rel="stylesheet" href="../styles/style.css" />
+	</head>
+	<body>
+		<script src="../js/three.min.js"></script>
+		<script>
+			let scene, camera, renderer, shape;
+			let ADD = 0.01;
+
+			const createGeometry = () => {
+				let geometry = new THREE.Geometry();
+				geometry.vertices.push(new THREE.Vector3(1, 0, 0));
+				geometry.vertices.push(new THREE.Vector3(0, 1, 0));
+				geometry.vertices.push(new THREE.Vector3(0, 0, 1));
+
+				geometry.faces.push(new THREE.Face3(0, 1, 2));
+
+				let material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+				shape = new THREE.Mesh(geometry, material);
+				scene.add(shape);
+			};
+
+			const init = () => {
+				//Creating a new Scene
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color(0xababab);
+
+				//Setting up the Camera
+				camera = new THREE.PerspectiveCamera(
+					75,
+					window.innerWidth / window.innerHeight,
+					1,
+					1000
+				);
+				camera.position.z = 5;
+
+				//Creating a Axes Helper
+				let axes = new THREE.AxesHelper(5);
+				scene.add(axes);
+
+				//Creating a Custom Shape
+				createGeometry();
+
+				// Rendering the Scene and the Camera
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize(window.innerWidth, window.innerHeight);
+				document.body.appendChild(renderer.domElement);
+			};
+
+			const animate = () => {
+				shape.geometry.verticesNeedUpdate = true;
+				renderer.render(scene, camera);
+				requestAnimationFrame(animate);
+			};
+
+			init();
+			animate();
+		</script>
+	</body>
+</html>

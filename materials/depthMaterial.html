@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Using the Depth Material</title>
+		<link rel="stylesheet" href="../styles/style.css" />
+	</head>
+	<body>
+		<script src="../js/three.min.js"></script>
+		<script>
+			let scene, camera, renderer, cube;
+			let ADD = 0.2;
+			let helper;
+
+			const createGeometry = () => {
+				let material, geometry;
+
+				//Common Material
+				material = new THREE.MeshDepthMaterial();
+
+				//Creating the cube
+				geometry = new THREE.BoxGeometry(5, 5, 5);
+				cube = new THREE.Mesh(geometry, material);
+				scene.add(cube);
+			};
+
+			const init = () => {
+				//Creating a new Scene
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color(0xababab);
+
+				//Setting up the Camera
+				camera = new THREE.PerspectiveCamera(
+					75,
+					window.innerWidth / window.innerHeight,
+					1,
+					1000
+				);
+				camera.position.z = 40;
+
+				//Creating a Custom Shape
+				createGeometry();
+
+				// Rendering the Scene and the Camera
+				renderer = new THREE.WebGLRenderer();
+				renderer.setSize(window.innerWidth, window.innerHeight);
+				document.body.appendChild(renderer.domElement);
+			};
+
+			const animate = () => {
+				cube.position.z += ADD;
+				if (cube.position.z > 37 || cube.position.z < -20) {
+					ADD *= -1;
+				}
+				renderer.render(scene, camera);
+				requestAnimationFrame(animate);
+			};
+
+			init();
+			animate();
+		</script>
+	</body>
+</html>
